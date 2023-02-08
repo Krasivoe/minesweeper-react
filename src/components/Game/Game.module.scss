@@ -1,0 +1,42 @@
+@use "../../styles/utils" as *;
+
+.game {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 330px;
+  height: 600px;
+  padding: 1rem;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  row-gap: 20px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  padding: 1rem;
+  background: #eee;
+
+  .info {
+    @include flex-center();
+    flex-direction: column;
+    row-gap: 15px;
+  }
+
+  .buttons {
+    @include flex-center();
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+
+    .button {
+      width: 100%;
+      padding: 6px 16px;
+    }
+  }
+}
+

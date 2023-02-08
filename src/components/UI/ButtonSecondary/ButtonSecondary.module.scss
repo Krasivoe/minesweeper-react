@@ -1,0 +1,8 @@
+@use "../../../styles/utils" as *;
+
+.button {
+  background: $secondary;
+  &:hover {
+    background: #2d7c31;
+  }
+}

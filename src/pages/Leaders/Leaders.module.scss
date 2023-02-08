@@ -1,0 +1,28 @@
+@use "../../styles/utils" as *;
+
+.leaders {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  min-width: 320px;
+  padding: 1.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  border-radius: 10px;
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0 0 5px 2px rgb(0 0 0 / 10%);
+}

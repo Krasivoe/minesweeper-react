@@ -1,0 +1,21 @@
+@use "../styles/utils" as *;
+
+body {
+  background: $bg;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.app {
+  @include flex-center();
+  height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
