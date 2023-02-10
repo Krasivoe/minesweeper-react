@@ -2,11 +2,13 @@ import styles from './Game.module.scss';
 import ButtonPrimary from '../UI/ButtonPrimary/ButtonPrimary.jsx';
 import ButtonSecondary from '../UI/ButtonSecondary/ButtonSecondary.jsx';
 import Board from '../Board/Board.jsx';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { initBoard } from '../../utils/index.js';
 import { useTime } from '../../hooks/useTime.js';
+import { UserContext } from '../../context/index.js';
 
-const Game = ({ data, setGameStarted }) => {
+const Game = ({ data, setGameStarted, name }) => {
+  const { users, setUsers } = useContext(UserContext);
   const [gameStatus, setGameStatus] = useState('😁');
   const [grid, setGrid] = useState(() => initBoard(data));
   const [mineCount, setMineCount] = useState(data.mines);
@@ -15,6 +17,21 @@ const Game = ({ data, setGameStarted }) => {
   useEffect(() => {
     if (gameStatus !== '😁') {
       clearInterval(timer);
+    }
+    if (gameStatus === '😎') {
+      let updatedUsers = [...users];
+
+      // Если имя есть и текущее время меньше => просто обновить время игрока
+      if (updatedUsers.length > 0 && name === updatedUsers[updatedUsers.length - 1].userName) {
+        if (users[users.length - 1].userTime > time) {
+          updatedUsers[updatedUsers.length - 1].userTime = time;
+        }
+      } else {
+        updatedUsers = [...users, { userName: name, userTime: time }];
+      }
+
+      setUsers(updatedUsers);
+      localStorage.setItem('users', JSON.stringify(updatedUsers));
     }
   }, [gameStatus, timer]);
 
@@ -55,6 +72,7 @@ const Game = ({ data, setGameStarted }) => {
           setGrid={setGrid}
           mineCount={mineCount}
           setMineCount={setMineCount}
+          name={name}
         />
       </div>
     </div>

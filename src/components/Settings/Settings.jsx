@@ -3,10 +3,10 @@ import stylesInput from '../../components/UI/Input/Input.module.scss';
 import ButtonPrimary from '../UI/ButtonPrimary/ButtonPrimary.jsx';
 import RadioButtons from './RadioButtons.jsx';
 import Input from '../UI/Input/Input.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const Settings = ({ handleSetData }) => {
-  const [nameValue, setNameValue] = useState('f');
+const Settings = ({ handleSetData, name }) => {
+  const [nameValue, setNameValue] = useState('');
   const [nameError, setNameError] = useState(false);
   const [difficulty, setDifficulty] = useState('easy');
   const presetData = {
@@ -18,7 +18,7 @@ const Settings = ({ handleSetData }) => {
     medium: {
       width: 16,
       height: 16,
-      mines: 40
+      mines: 2
     },
     hard: {
       width: 16,
@@ -26,6 +26,10 @@ const Settings = ({ handleSetData }) => {
       mines: 99
     }
   };
+
+  useEffect(() => {
+    setNameValue(name);
+  }, [name]);
 
   const handleSubmit = e => {
     e.preventDefault();

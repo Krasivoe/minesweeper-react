@@ -3,8 +3,8 @@ import { useState } from 'react';
 import Game from '../../components/Game/Game.jsx';
 
 const Home = () => {
-  const [gameStarted, setGameStarted] = useState(false);
   const [name, setName] = useState('');
+  const [gameStarted, setGameStarted] = useState(false);
   const [setupData, setSetupData] = useState({
     width: 8,
     height: 8,
@@ -17,8 +17,8 @@ const Home = () => {
     setGameStarted(true);
   };
 
-  if (gameStarted) return <Game data={setupData} setGameStarted={setGameStarted}/>;
-  return <Settings handleSetData={handleSetData} />;
+  if (gameStarted) return <Game data={setupData} setGameStarted={setGameStarted} name={name} />;
+  return <Settings handleSetData={handleSetData} name={name} />;
 };
 
 export default Home;

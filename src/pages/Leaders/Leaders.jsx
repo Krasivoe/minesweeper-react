@@ -1,15 +1,21 @@
 import styles from './Leaders.module.scss';
+import List from '../../components/UI/List/List.jsx';
+import { useContext } from 'react';
+import { UserContext } from '../../context/index.js';
 
 const Leaders = () => {
+  const { users } = useContext(UserContext);
+
+  const sortedAndShortedUsers = users
+    .sort((a, b) => {
+      return a.userTime - b.userTime || a.userName.localeCompare(b.userName);
+    })
+    .slice(0, 10);
+
   return (
     <div className={[styles.leaders, 'paper'].join(' ')}>
       <h2>Лучшие игроки</h2>
-      <ul className={styles.list}>
-        <li className={styles.item}>
-          <div>Игорь Войтенко1</div>
-          <span>195</span>
-        </li>
-      </ul>
+      <List users={sortedAndShortedUsers} />
     </div>
   );
 };

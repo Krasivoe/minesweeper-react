@@ -3,7 +3,9 @@ import Cell from '../UI/Cell/Cell.jsx';
 import { produce } from 'immer';
 import { showEmptyCells, showGridLose, showGridWin } from '../../utils/index.js';
 
-const Board = ({ data, gameStatus, setGameStatus, grid, setGrid, mineCount, setMineCount }) => {
+const Board = props => {
+  const { data, gameStatus, setGameStatus, grid, setGrid, mineCount, setMineCount } = props;
+
   const onLeftClick = (x, y) => {
     if (grid[x][y].isOpen || grid[x][y].flagIndex > 0 || gameStatus !== '😁') return;
 

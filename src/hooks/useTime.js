@@ -6,7 +6,7 @@ export const useTime = () => {
 
   useEffect(() => {
     const time = setInterval(() => {
-      if (seconds >= 9) return;/// 999 поставить
+      if (seconds >= 999) return;
       setSeconds(seconds => seconds + 1);
     }, 1000);
 
