@@ -11,11 +11,14 @@
   transition: all 0.3s linear;
 
   &:hover {
-    border: 2px solid $light-blue;
+    border: 2px solid $blue;
     background: $white;
   }
 
   &.error {
     border: 2px solid $red;
+    &::placeholder {
+      color: $red;
+    }
   }
 }

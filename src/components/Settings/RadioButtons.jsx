@@ -1,6 +1,6 @@
 import styles from './Settings.module.scss';
 
-const RadioButtons = ({ level, setLevel }) => {
+const RadioButtons = ({ difficulty, setDifficulty }) => {
   const data = [
     { value: 'easy', text: 'Простой 8x8, 10 мин' },
     { value: 'medium', text: 'Средний 16x16, 40 мин' },
@@ -16,8 +16,8 @@ const RadioButtons = ({ level, setLevel }) => {
             value={item.value}
             name="settings"
             type="radio"
-            checked={level === item.value}
-            onChange={e => setLevel(e.target.value)}
+            checked={difficulty === item.value}
+            onChange={e => setDifficulty(e.target.value)}
           />
           <span className={styles.span}>{item.text}</span>
         </label>

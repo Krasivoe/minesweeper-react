@@ -1,11 +1,12 @@
 @use "../../styles/utils" as *;
 
 .game {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  width: 330px;
-  height: 600px;
+  min-width: 280px;
+  min-height: 500px;
   padding: 1rem;
 }
 
@@ -14,29 +15,32 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  row-gap: 20px;
+  row-gap: 15px;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   padding: 1rem;
   background: #eee;
 
-  .info {
-    @include flex-center();
-    flex-direction: column;
-    row-gap: 15px;
-  }
-
+  .info,
   .buttons {
     @include flex-center();
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: 10px;
+  }
+
+  .buttons {
     width: 100%;
 
     .button {
       width: 100%;
+      max-width: 250px;
       padding: 6px 16px;
     }
   }
+}
+
+.bottom {
+  @include flex-center();
 }
 
