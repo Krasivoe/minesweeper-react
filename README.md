@@ -1,20 +1,55 @@
-# React Start
+# Сапер на React
 
-## Install
+**О проекте:**
+Реализация игры "Сапер" с выбором сложности и списком лидеров.<br>
+
+**Цель игры:**
+Найти все мины на игровом поле.<br>
+
+**Режимы управления**<br>
+
+- Левый клик - открытие ячейки.
+- Правый клик - установка метки нахождения предполагаемой мины.<br>
+  Доступные метки: Флажок, Вопросик (Меняются поочередно флажок - вопросик - ячейка без метки).
+
+В игре доступно 3 уровня сложности, каждый меняет размер игрового поля:
+
+- Простой - поле 8 * 8 клеток
+- Средний - поле 16 * 16 клеток
+- Сложный - поле 32 * 16 клеток
+  <br>
+
+Так-же доступен список лидеров, содержащий 10 игроков с лучшим временем решения головоломки.
+
+## Изображения
+
+### Начальный экран
+
+ <img src='./images/start.jpg' width='600' height='600' alt="Начальный экран">
+
+### Игра
+
+ <img src='./images/game.jpg' width='600' height='600' alt="Игра">
+
+### Список лидеров
+
+ <img src='./images/leaders.jpg' width='600' height='600' alt="Список лидеров">
+
+## Установка
 
 ```bash
-git clone https://github.com/Krasivoe/react-start.git
-cd quiz-react
+git clone https://github.com/Krasivoe/minesweeper-react.git
+cd minesweeper-react
 npm install
 ```
 
-## Compiles and hot-reloads for development
+## Сборка development
 
 ```bash
 npm start
 ```
 
-## Compiles and minifies for production
+## Сборка production
 
 ```bash
 npm run build
