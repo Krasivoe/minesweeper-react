@@ -17,8 +17,15 @@ const Home = () => {
     setGameStarted(true);
   };
 
-  if (gameStarted) return <Game data={setupData} setGameStarted={setGameStarted} name={name} />;
-  return <Settings handleSetData={handleSetData} name={name} />;
+  return (
+    <>
+      {gameStarted ? (
+        <Game data={setupData} setGameStarted={setGameStarted} name={name} />
+      ) : (
+        <Settings handleSetData={handleSetData} name={name} />
+      )}
+    </>
+  );
 };
 
 export default Home;

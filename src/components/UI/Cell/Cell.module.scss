@@ -2,15 +2,13 @@
 
 .cell {
   @include flex-center();
-  width: 30px;
-  height: 30px;
   font-weight: bold;
   border: 1px solid $white;
-  background: #9aa0a8;
+  background: $gray;
   cursor: pointer;
 
   &.hidden {
-    background: #9aa0a8;
+    background: $gray;
   }
 
   &.shown {

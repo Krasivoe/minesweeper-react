@@ -1,13 +1,28 @@
 import styles from './Board.module.scss';
+import React from 'react';
 import Cell from '../UI/Cell/Cell.jsx';
 import { produce } from 'immer';
 import { showEmptyCells, showGridLose, showGridWin } from '../../utils/index.js';
 
-const Board = props => {
-  const { data, gameStatus, setGameStatus, grid, setGrid, mineCount, setMineCount } = props;
+const Board = React.memo(props => {
+  const { data, gameStatus, setGameStatus, grid, setGrid, mineCount, setMineCount, mobileFlag } =
+    props;
 
-  const onLeftClick = (x, y) => {
-    if (grid[x][y].isOpen || grid[x][y].flagIndex > 0 || gameStatus !== '😁') return;
+  //Данные для адаптива
+  const windowWidth = document.documentElement.clientWidth;
+  const cellWidth = data.height !== 8 && windowWidth < 480 ? '25px' : '30px';
+  const cellHeight = data.height !== 8 && windowWidth < 480 ? '25px' : '30px';
+  //--------------------
+
+  const onLeftClick = (e, x, y) => {
+    if ((grid[x][y].isOpen || grid[x][y].flagIndex > 0 || gameStatus !== '😁') && !mobileFlag) {
+      return;
+    }
+    // Имитация правого клика на мобильной версии
+    if (mobileFlag) {
+      onRightClick(e, x, y);
+      return;
+    }
 
     const updatedGrid = produce(grid, draft => {
       Object.assign(draft[x][y], { isOpen: true });
@@ -24,8 +39,8 @@ const Board = props => {
       return;
     }
 
-    const hiddenGrid = updatedGrid.flat().filter(cell => !cell.isOpen);
     // Победа
+    const hiddenGrid = updatedGrid.flat().filter(cell => !cell.isOpen);
     if (hiddenGrid.length === data.mines) {
       const finalGrid = showGridWin(updatedGrid);
       setGrid(finalGrid);
@@ -59,15 +74,17 @@ const Board = props => {
       className={styles.board}
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${data.height}, 30px)`, //width
-        gridTemplateRows: `repeat(${data.width}, 30px)` //height
+        gridTemplateColumns: `repeat(${data.height}, 1fr)`, //колонки
+        gridTemplateRows: `repeat(${data.width}, 1fr)` //строки
       }}
     >
       {grid.map((row, i) =>
         row.map((col, j) => (
           <Cell
-            onLClick={(i, j) => onLeftClick(i, j)}
+            onLClick={(e, i, j) => onLeftClick(e, i, j)}
             onRClick={(e, i, j) => onRightClick(e, i, j)}
+            width={cellWidth}
+            height={cellHeight}
             key={`${i}-${j}`}
             col={col}
             i={i}
@@ -77,6 +94,6 @@ const Board = props => {
       )}
     </div>
   );
-};
+});
 
 export default Board;

@@ -1,18 +1,17 @@
 import './styles/App.scss';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import AppRouter from './components/AppRouter.jsx';
 import { UserContext } from './context/index.js';
 import { useState } from 'react';
 
 function App() {
-  //const [users, setUsers] = useState([]);
   const [users, setUsers] = useState(
     localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []
   );
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <UserContext.Provider
         value={{
           users,
@@ -26,7 +25,7 @@ function App() {
           </div>
         </div>
       </UserContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

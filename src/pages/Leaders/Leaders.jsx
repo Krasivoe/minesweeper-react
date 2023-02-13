@@ -5,7 +5,6 @@ import { UserContext } from '../../context/index.js';
 
 const Leaders = () => {
   const { users } = useContext(UserContext);
-
   const sortedAndShortedUsers = users
     .sort((a, b) => {
       return a.userTime - b.userTime || a.userName.localeCompare(b.userName);

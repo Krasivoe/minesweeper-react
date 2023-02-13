@@ -1,16 +1,13 @@
 @use "../../styles/utils" as *;
 
 .game {
-  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  min-width: 280px;
-  min-height: 500px;
   padding: 1rem;
 }
 
-.top {
+.control {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,9 +35,28 @@
       padding: 6px 16px;
     }
   }
+
+  .mobileButtons {
+    @include flex-center();
+    gap: 20px;
+    width: 100%;
+
+    .mobileButton {
+      width: 90px;
+      height: 37px;
+      background: $gray;
+      color: black;
+      font-size: 20px;
+      &.active {
+        border: 2px solid black;
+        background: $white;
+      }
+    }
+  }
 }
 
-.bottom {
-  @include flex-center();
+@media screen and (max-width: $bpSmall) {
+  .game {
+    padding: 1rem 0.5rem;
+  }
 }
-

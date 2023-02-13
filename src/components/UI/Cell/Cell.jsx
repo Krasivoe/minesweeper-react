@@ -1,11 +1,10 @@
 import styles from './Cell.module.scss';
 
-const Cell = ({ col, i, j, onLClick, onRClick }) => {
+const Cell = ({ col, i, j, onLClick, onRClick, width, height }) => {
   const getValue = cellData => {
     const { isMine, isOpen, neighbors, flagIndex } = cellData;
     if (!isOpen) return flagIndex ? (flagIndex === 1 ? '🚩' : '❓') : '';
     if (isMine) return '💣';
-    //if (isOpen) return '👽'; // Изменить
     if (neighbors) return neighbors;
   };
 
@@ -37,9 +36,13 @@ const Cell = ({ col, i, j, onLClick, onRClick }) => {
       className={
         col.isOpen ? [styles.cell, styles.shown].join(' ') : [styles.cell, styles.hidden].join(' ')
       }
-      style={{ color: getColor(col.neighbors) }}
+      style={{
+        width: width,
+        height: height,
+        color: getColor(col.neighbors)
+      }}
       data-dimension={`${i}-${j}`}
-      onClick={() => onLClick(i, j)}
+      onClick={e => onLClick(e, i, j)}
       onContextMenu={e => onRClick(e, i, j)}
     >
       {getValue(col)}

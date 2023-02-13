@@ -9,13 +9,32 @@ h2 {
   line-height: 28px;
 }
 
-.app {
-  @include flex-center();
-  height: 100vh;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 50px;
 }
+
+.app {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: $bpSmall) {
+  .wrapper {
+    row-gap: 20px;
+  }
+  .app {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: $bpTiny) {
+  .container {
+    padding: 0;
+  }
+}
+

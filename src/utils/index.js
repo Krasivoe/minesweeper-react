@@ -14,7 +14,7 @@ export const generateRandomMines = (data = [], height = 0, width = 0, mines = 0)
   return data;
 };
 
-// Получить соседей клетки
+// Получение соседей клетки
 export const getNeighbors = (i = 0, j = 0, data = [], height = 0, width = 0) => {
   const neighbors = [];
   const surroundings = [
@@ -64,10 +64,10 @@ export const generateNeighbors = (data = [], height = 0, width = 0) => {
 // Инициализация поля
 export const initBoard = setupData => {
   const { width, height, mines } = setupData;
-  const array2D = Array(width) //height мое было
+  const array2D = Array(width)
     .fill(0)
     .map((_, indexH) =>
-      Array(height) //width мое было
+      Array(height)
         .fill(null)
         .map((_, indexW) => ({
           x: indexH,
@@ -84,7 +84,7 @@ export const initBoard = setupData => {
   return generateNeighbors(arrayWithMines, height, width);
 };
 
-// Показать пустые ячейки
+// Показ пустых ячеек
 export const showEmptyCells = (height, width, x, y, data) => {
   const neighbors = getNeighbors(x, y, data, height, width);
 
